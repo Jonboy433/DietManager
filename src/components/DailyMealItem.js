@@ -3,12 +3,10 @@ import React from 'react';
 function DailyMealItem(props) {
 
     return (
-        <div>
             <tr>
-                <td>{props.item.name}</td>
-                <td>{props.item.value}</td>
+                <td>{props.meal.name}</td>
+                <td>{props.meal.value}</td>
             </tr>
-        </div>
     )
 
 }

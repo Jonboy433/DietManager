@@ -4,30 +4,33 @@ import DailyMealItem from '../components/DailyMealItem'
 function DailyMeal(props) {
 
     let { meals } = props
+    
+    //Assume the same meal date exists for all meals
+    let mealDate = meals[0].mealDate
 
     const loadMeals = (mealType) => {
         let mealItems = []
-        
-        for (const key of Object.keys(meals)) {
+
+        for (const key of Object.keys(meals)) {           
             switch(mealType) {
                 case 'Breakfast':  
                     if (meals[key].mealType=='Breakfast') {
-                        mealItems.push(<DailyMealItem key={meals[key].name} meals={meals[key]} />)
+                        mealItems.push(<DailyMealItem key={meals[key].name} meal={meals[key]} />)
                     }
                     break
                 case 'Lunch':
                     if (meals[key].mealType=='Lunch') {
-                        mealItems.push(<DailyMealItem key={meals[key].name} meals={meals[key]} />)
+                        mealItems.push(<DailyMealItem key={meals[key].name} meal={meals[key]} />)
                     }
                     break
                 case 'Dinner':
                     if (meals[key].mealType=='Dinner') {
-                         mealItems.push(<DailyMealItem key={meals[key].name} meals={meals[key]} />)
+                         mealItems.push(<DailyMealItem key={meals[key].name} meal={meals[key]} />)
                     }
                     break
                 case 'Snacks':
                     if (meals[key].mealType=='Snacks') {
-                        mealItems.push(<DailyMealItem key={meals[key].name} meals={meals[key]} />)
+                        mealItems.push(<DailyMealItem key={meals[key].name} meal={meals[key]} />)
                     }
                     break
                 default:
@@ -48,6 +51,11 @@ function DailyMeal(props) {
 
     return (
         <div>
+            <tr>
+                <th>
+                    { mealDate }
+                </th>
+            </tr>
             <tr>
                 <th>
                     Breakfast

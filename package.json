@@ -3,12 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
+    "@testing-library/jest-dom": "^4.0.0",
+    "@testing-library/react": "^8.0.7",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "react-scripts": "3.0.1",
     "react-test-renderer": "^16.8.6"
   },
   "dependencies": {
+    "axios": "^0.19.0",
     "eslint-plugin-jest": "^22.7.1",
     "eslint-plugin-react": "^7.14.2",
     "prop-types": "^15.7.2",
@@ -20,7 +23,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=node",
+    "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
   "browserslist": {

@@ -7,24 +7,27 @@ describe('Daily Meal', () => {
     let meals
 
     beforeEach(() => {
-        meals = {
-            0: {
+        meals = [
+            {
+                mealDate: '07-20-19',
                 mealType: 'Breakfast',
                 name: 'Green Tea',
                 value: 0
             },
-            1: {
+            {
+                mealDate: '07-20-19',
                 mealType: 'Breakfast',
                 name: 'Donut',
                 value: 270
             },
-            2: {
+            {
+                mealDate: '07-20-19',
                 mealType: 'Lunch',
                 name: 'Sandwich',
                 value: 490
             },
-            3: { mealType: 'Dinner', name: 'Test', value: 0}
-        }
+            { mealDate: '07-20-19',mealType: 'Dinner', name: 'Test', value: 0}
+        ]
 
         wrapper = shallow(<DailyMeal meals={meals}/>)
     });
@@ -49,7 +52,6 @@ describe('Daily Meal', () => {
     });
     it('should display an Add button if no mealType is present', () => {
         
-        console.log(wrapper.debug())
         expect(wrapper.find('#btn-add-item')).toHaveLength(1)
         
         expect(wrapper.find('#snack-items')
