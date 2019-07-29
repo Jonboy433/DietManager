@@ -1,34 +1,13 @@
 import React from 'react';
 import { shallow } from 'enzyme'
 import DailyMeal from '../components/DailyMeal'
+import testHelper from '../tests/TestHelpers'
 
 describe('Daily Meal', () => {
     let wrapper
-    let meals
+    let meals = testHelper.singleDayMeals
 
     beforeEach(() => {
-        meals = [
-            {
-                mealDate: '07-20-19',
-                mealType: 'Breakfast',
-                name: 'Green Tea',
-                value: 0
-            },
-            {
-                mealDate: '07-20-19',
-                mealType: 'Breakfast',
-                name: 'Donut',
-                value: 270
-            },
-            {
-                mealDate: '07-20-19',
-                mealType: 'Lunch',
-                name: 'Sandwich',
-                value: 490
-            },
-            { mealDate: '07-20-19',mealType: 'Dinner', name: 'Test', value: 0}
-        ]
-
         wrapper = shallow(<DailyMeal meals={meals}/>)
     });
 
@@ -37,27 +16,22 @@ describe('Daily Meal', () => {
     });
 
     it('should display under the correct table header', () => {
+        expect(wrapper.find('#breakfast-items')).toHaveLength(2)
+        expect(wrapper.find('#lunch-items')).toHaveLength(1)
+        expect(wrapper.find('#dinner-items')).toHaveLength(1)
+        expect(wrapper.find('#snack-items')).toHaveLength(0)
+    });
 
-        expect(wrapper.find('#breakfast-items').children('DailyMealItem')).toHaveLength(2)
-        expect(wrapper.find('#lunch-items').children('DailyMealItem')).toHaveLength(1)
-        expect(wrapper.find('#dinner-items').children('DailyMealItem')).toHaveLength(1)
-        expect(wrapper.find('#snack-items').children('DailyMealItem')).toHaveLength(0)
+    it('should display the correct meal data', () => {
+        expect(wrapper.containsMatchingElement(<th>07-20-19</th>)).toBe(true)
     });
 
     it('should display No Meals Found if mealType is missing', () => {
-        
-        expect(wrapper.find('#snack-items')
-        .children('tr')
-        .children('td').first().text()).toBe('No Meals Found')
+        expect(wrapper.find('td').first().text()).toBe('No Meals Found')
     });
+    
     it('should display an Add button if no mealType is present', () => {
-        
         expect(wrapper.find('#btn-add-item')).toHaveLength(1)
-        
-        expect(wrapper.find('#snack-items')
-        .children('tr')
-        .children('td')
-        .children('button').exists()).toBe(true)
-       });
+    });
 
 });

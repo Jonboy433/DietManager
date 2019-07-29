@@ -1,10 +1,11 @@
-import React, { useState} from 'react';
+import React from 'react';
+import DailyMealSummary from './DailyMealSummary';
 
 function App() {
   
   return (
     <div>
-      Hello, World!!
+      <DailyMealSummary />
     </div>
   );
 }

@@ -7,6 +7,7 @@ describe('Daily Meal Item', () => {
 
     beforeEach(() => {
         const meal = {
+            mealType: 'Breakfast',
             name: 'Donut',
             value: 150
         }
@@ -15,13 +16,10 @@ describe('Daily Meal Item', () => {
     });
 
     it('should create 2 table row items', () => {
-    
         expect(wrapper.contains(<td>Donut</td>)).toBeTruthy()
         expect(wrapper.contains(<td>Sandwich</td>)).toBeFalsy()
         expect(wrapper.find('td')).toHaveLength(2)
-    
-
-}); 
+    }); 
 
     it('should display the name is the 1st table col', () => {
         expect(wrapper.find('td').first().text()).toBe('Donut')
@@ -30,5 +28,10 @@ describe('Daily Meal Item', () => {
 
     it('should display the value is the 2nd table col', () => {
         expect(wrapper.find('td').get(1).props.children).toEqual(150)
+    });
+
+    it('should tag table row with mealType ID', () => {
+        expect(wrapper.find('#breakfast-item')).toHaveLength(1)
+        expect(wrapper.find('#lunch-item')).toHaveLength(0)
     });
 });

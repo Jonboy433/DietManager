@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Button } from 'react-bootstrap/Button'
 import DailyMealItem from '../components/DailyMealItem'
 
 function DailyMeal(props) {
@@ -14,23 +15,23 @@ function DailyMeal(props) {
         for (const key of Object.keys(meals)) {           
             switch(mealType) {
                 case 'Breakfast':  
-                    if (meals[key].mealType=='Breakfast') {
-                        mealItems.push(<DailyMealItem key={meals[key].name} meal={meals[key]} />)
+                    if (meals[key].mealType === 'Breakfast') {
+                        mealItems.push(<DailyMealItem id='breakfast-items' key={meals[key].name} meal={meals[key]} />)
                     }
                     break
                 case 'Lunch':
-                    if (meals[key].mealType=='Lunch') {
-                        mealItems.push(<DailyMealItem key={meals[key].name} meal={meals[key]} />)
+                    if (meals[key].mealType === 'Lunch') {
+                        mealItems.push(<DailyMealItem id='lunch-items' key={meals[key].name} meal={meals[key]} />)
                     }
                     break
                 case 'Dinner':
-                    if (meals[key].mealType=='Dinner') {
-                         mealItems.push(<DailyMealItem key={meals[key].name} meal={meals[key]} />)
+                    if (meals[key].mealType === 'Dinner') {
+                         mealItems.push(<DailyMealItem id='dinner-items' key={meals[key].name} meal={meals[key]} />)
                     }
                     break
                 case 'Snacks':
-                    if (meals[key].mealType=='Snacks') {
-                        mealItems.push(<DailyMealItem key={meals[key].name} meal={meals[key]} />)
+                    if (meals[key].mealType === 'Snacks') {
+                        mealItems.push(<DailyMealItem id='snack-items' key={meals[key].name} meal={meals[key]} />)
                     }
                     break
                 default:
@@ -50,45 +51,48 @@ function DailyMeal(props) {
     }
 
     return (
-        <div>
+        <table>
+            <thead>
             <tr>
                 <th>
                     { mealDate }
                 </th>
             </tr>
+            </thead>
+            <tbody>
             <tr>
                 <th>
                     Breakfast
                 </th>
             </tr>
-           <div id='breakfast-items'>
+           
            { loadMeals('Breakfast')}
-           </div>
+          
             <tr>
                 <th>
                     Lunch
                 </th>
             </tr>
-            <div id='lunch-items'>
+
             { loadMeals('Lunch')}
-            </div>
+
             <tr>
                 <th>
                     Dinner
                 </th>
             </tr>
-            <div id='dinner-items'>
+     
             { loadMeals('Dinner')}
-            </div>
+    
             <tr>
                 <th>
                     Snacks
                 </th>
             </tr>
-            <div id='snack-items'>
+  
             { loadMeals('Snacks')}
-            </div>
-        </div>
+            </tbody>
+        </table>
     )
 }
 
